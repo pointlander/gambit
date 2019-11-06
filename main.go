@@ -83,10 +83,10 @@ func (j *Join) Start(inLeft, inRight chan State) {
 	j.Done = make(chan bool, 1)
 	j.Left.Input = inLeft
 	j.Left.Buffer = make([]State, 8)
-	j.Left.Filter = cuckoo.NewFilter(8 * 8)
+	j.Left.Filter = cuckoo.NewFilter(1024)
 	j.Right.Input = inRight
 	j.Right.Buffer = make([]State, 8)
-	j.Right.Filter = cuckoo.NewFilter(8 * 8)
+	j.Right.Filter = cuckoo.NewFilter(1024)
 
 	go func() {
 		for {
